@@ -1,0 +1,57 @@
+#include <SPI.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_PCD8544.h>
+//gerekli kutuphaneler
+
+int buzzer=10;
+
+Adafruit_PCD8544 display = Adafruit_PCD8544(7, 6, 5, 4, 3);   //pcd8544 uretici
+
+void setup() {
+  //Initialize Display
+  pinMode(buzzer,OUTPUT);
+  display.begin();
+  display.clearDisplay();   //bu yapılmazsa basta cikan yildiz surekli cikar
+  // you can change the contrast around to adapt the display for the best viewing!
+  display.setContrast(100);
+}
+int k=0;
+void loop() {
+  // Display Text
+  display.setTextSize(2);
+  display.setTextColor(BLACK);
+  display.setCursor(14,18);
+  if(k<59){   //bu sorgu sart
+    display.print("00:00");
+    display.display();
+    delay(1000); 
+    display.clearDisplay();
+  }
+  if(k<59){
+    for(int i=0;i<60;i++){
+        k=i;    
+        for(int k=0;k<60;k++){
+          display.setCursor(14,18);
+          if(i<=9) display.print("0");
+          display.print(i);
+          display.print(":");
+          if(k<=9) display.print("0");   //fonk calissa bile alt satira tasacagindan 9
+          display.print(k+1);
+          display.display();    
+          delay(1);    //60'e kadar sayar ve artar 60 sn sayacak 
+          display.clearDisplay();
+        }
+      }
+  }else{
+    display.setTextSize(1);
+    display.setCursor(14,18);
+    tone(buzzer,240);
+    display.println("Sure bitti");
+    display.display();
+    delay(500);
+    noTone(buzzer);
+    delay(1000);
+    display.clearDisplay();
+  }
+  
+}
