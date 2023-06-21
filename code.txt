@@ -38,7 +38,7 @@ void loop() {
           if(k<=9) display.print("0");   //fonk calissa bile alt satira tasacagindan 9
           display.print(k+1);
           display.display();    
-          delay(1);    //60'e kadar sayar ve artar 60 sn sayacak 
+          delay(1000);    //60'e kadar sayar ve artar 60 sn sayacak 
           display.clearDisplay();
         }
       }
