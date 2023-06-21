@@ -32,10 +32,10 @@ void loop() {
         k=i;    
         for(int k=0;k<60;k++){
           display.setCursor(14,18);
-          if(i<=9) display.print("0");
+          if(i<=8) display.print("0");    //8 olmazsa i+1 sorun yapar
           display.print(i);
           display.print(":");
-          if(k<=9) display.print("0");   //fonk calissa bile alt satira tasacagindan 9
+          if(k<=8) display.print("0");   //fonk calissa bile alt satira tasacagindan 9
           display.print(k+1);
           display.display();    
           delay(1000);    //60'e kadar sayar ve artar 60 sn sayacak 
